@@ -11,8 +11,17 @@ RADAR_1 = 60 # Velocidade Máxima do radar
 LOCAL_1 = 100 # Quilometro onde está o radar
 RADAR_RANGE = 1 # Até que ponto o radar pega
 
-if velocidade > RADAR_1:
-    print('velocidade do carro acima do radar 1!')
+# Forma Errada
+if local_carro >= (LOCAL_1 - RADAR_RANGE)\
+    and local_carro <=(LOCAL_1 + RADAR_RANGE)\
+    and velocidade > RADAR_1:
+    print('Carro foi multado no radar 1')
 
-if local_carro >= (LOCAL_1 - RADAR_RANGE) and local_carro <=(LOCAL_1 + RADAR_RANGE):
-    print('')
+# Forma Clean
+velocidade_passou_do_limite = velocidade > RADAR_1
+carro_ponto_antes_do_radar1 = local_carro >= (LOCAL_1 - RADAR_RANGE)
+carro_ponto_depois_do_radar1 = local_carro <= (LOCAL_1 + RADAR_RANGE)
+carro_sera_multado_no_radar1 = velocidade_passou_do_limite and carro_ponto_antes_do_radar1 and carro_ponto_depois_do_radar1
+
+if carro_sera_multado_no_radar1:
+    print('Carro foi multado no radar 1!')
